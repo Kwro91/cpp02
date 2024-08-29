@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/06/05 17:29:18 by besalort         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:18:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& x) {
+Fixed::Fixed(const Fixed &x) {
 	std::cout << "Copy constructor called" << std::endl;
 
 	*this = x;
 }
 
-Fixed& Fixed::operator=(const Fixed& x) {
+Fixed &Fixed::operator=(const Fixed &x) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	
 	if (this != &x)
 	{
-		this->value = x.getRawBits();
+		this->setRawBits(x.getRawBits());
 	}
 	return (*this);
 }
@@ -64,12 +64,12 @@ int		Fixed::toInt() const {
 // static_cast<> sert a caster de maniere safe et lisible
 
 float	Fixed::toFloat() const {
-	return (static_cast<float>(this->value / (1 << bits) ));
+	return (static_cast<float>(this->value) / static_cast<float>(1 << bits));
 }
 
 // ostream -> output stream ou flux de sortie
 
-std::ostream & operator<<(std::ostream & o, Fixed const & x) {
-	o << x.toFloat();
-	return o;
+std::ostream &operator<<(std::ostream &stream, Fixed const &x) {
+	stream << x.toFloat();
+	return stream;
 }

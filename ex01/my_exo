@@ -6,9 +6,9 @@ Copy assignment operator called
 Float constructor called
 Copy assignment operator called
 Destructor called
-a is 1234
+a is 1234.43
 b is 10
-c is 42
+c is 42.4219
 d is 10
 a is 1234 as integer
 b is 10 as integer
