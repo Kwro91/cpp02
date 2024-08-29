@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/08/29 16:02:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:31:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,66 @@ std::ostream &operator<<(std::ostream &stream, Fixed const &x) {
 	stream << x.toFloat();
 	return stream;
 }
+
+// comparaison operator
+
+bool Fixed::operator>(const Fixed &nb) {
+	return (this->value > nb.getRawBits()); //return true or false
+}
+
+bool Fixed::operator<(const Fixed &nb) {
+	return (this->value < nb.getRawBits());
+}
+
+bool Fixed::operator>=(const Fixed &nb) {
+	return (this->value >= nb.getRawBits());
+}
+
+bool Fixed::operator<=(const Fixed &nb) {
+	return (this->value <= nb.getRawBits());
+}
+
+bool Fixed::operator==(const Fixed &nb) {
+	return (this->value == nb.getRawBits());
+}
+
+bool Fixed::operator!=(const Fixed &nb) {
+	return (this->value != nb.getRawBits());
+}
+
+// operation operator
+
+Fixed Fixed::operator+(const Fixed &nb) {
+	return Fixed(this->toFloat() + nb.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed &nb) {
+	return Fixed(this->toFloat() - nb.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed &nb) {
+	return Fixed(this->toFloat() * nb.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed &nb) {
+	if (this->value == 0 || nb.toFloat() == 0)
+	{
+		std::cout << "You can't divide by 0" << std::endl;
+		return Fixed(this->toFloat());
+	}
+	return Fixed(this->toFloat() / nb.toFloat());
+}
+
+// pre increment
+
+Fixed	&Fixed::operator++(void)
+{
+	this->value += 1;
+	return (*this);
+}
+
+// post increment
+
+// pre decrement
+
+// post decrement

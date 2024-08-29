@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/06/04 15:35:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:35:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class Fixed
 {
 	private:
-		static const int	bits = 8;
-		int					value;
+		static const int	bits = 8; //partie fractionnaire
+		int					value; // entier
 
 	public:
 		Fixed(); //constructeur par defaut

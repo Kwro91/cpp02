@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/08/29 16:01:13 by besalort         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:01:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ class Fixed
 		void	setRawBits(int const raw);
 		int		toInt() const;
 		float	toFloat() const;
+		
+		bool operator>(const Fixed &nb);
+		bool operator<(const Fixed &nb);
+		bool operator>=(const Fixed &nb);
+		bool operator<=(const Fixed &nb);
+
+		bool operator==(const Fixed &nb);
+		bool operator!=(const Fixed &nb);
+
+		Fixed operator+(const Fixed &nb);
+		Fixed operator-(const Fixed &nb);
+		Fixed operator*(const Fixed &nb);
+		Fixed operator/(const Fixed &nb);
 };
 
 std::ostream & operator<<(std::ostream & o, Fixed const & i);
