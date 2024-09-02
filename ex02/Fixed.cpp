@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/08/29 16:31:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:10:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ Fixed Fixed::operator/(const Fixed &nb) {
 	return Fixed(this->toFloat() / nb.toFloat());
 }
 
-// pre increment
+// prefix increment
 
 Fixed	&Fixed::operator++(void)
 {
@@ -131,8 +131,14 @@ Fixed	&Fixed::operator++(void)
 	return (*this);
 }
 
-// post increment
+// postfix increment
 
-// pre decrement
+Fixed	&Fixed::operator++(int) {
+	Fixed  cpy(this->value * toFloat());
+	this->value += 1;
+	return (cpy);
+}
 
-// post decrement
+// prefix decrement
+
+// postfix decrement
