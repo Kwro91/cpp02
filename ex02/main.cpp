@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:08:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/06/05 17:08:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:21:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 // s = signe
 // e = exposant
 // m = mantisse
-// nb = m * 2^e
+// nb = s * m * 2^(e-127)
 
 
 ///////////////////////////////////////////////
@@ -30,21 +30,51 @@
 // on utilise du complement a deux pour les negatifs -> reverse tout les bits puis ajouter 1
 // ex : [-2] -> 2 = 0010 -> 1101 -> 1110 = -2
 
+// #include "Fixed.hpp"
+
+// int main( void ) {
+// 	Fixed a;
+// 	Fixed const b( 10 );
+// 	Fixed const c( 42.42f );
+// 	Fixed const d( b );
+// 	a = Fixed( 1234.4321f );
+// 	std::cout << "a is " << a << std::endl;
+// 	std::cout << "b is " << b << std::endl;
+// 	std::cout << "c is " << c << std::endl;
+// 	std::cout << "d is " << d << std::endl;
+// 	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+// 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+// 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+// 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+// 	return 0;
+// }
+
 #include "Fixed.hpp"
+#include <iostream>
 
 int main( void ) {
-	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
-	a = Fixed( 1234.4321f );
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-	return 0;
+
+std::cout << "my test ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+
+Fixed test;
+
+test.setRawBits(256); // on decale de 8bits sur la droite : 0001 0000 0000 -> 0000 0000 0001 = 1
+std::cout << test.toInt() << std::endl;
+
+test.setRawBits(10752); // ici on veux value/2^bits, on a value = 10752 et 2^8 = 256 et (float)10752/(float)256 = 42.0
+std::cout << test.toFloat() << std::endl;
+
+
+std::cout << "mandatory test ~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+
+Fixed a;
+Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+std::cout << a << std::endl;
+std::cout << ++a << std::endl;
+std::cout << a << std::endl;
+std::cout << a++ << std::endl;
+std::cout << a << std::endl;
+std::cout << b << std::endl;
+std::cout << Fixed::max( a, b ) << std::endl;
+return 0;
 }
