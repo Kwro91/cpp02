@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:08:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/08/28 17:05:26 by besalort         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:08:23 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@
 
 // Pour transformer un float en binaire, on fait l'inverse et on note le reste a chaque fois
 // ex :  17.125
-// 17 / 2 = 8 [1]    |  125 * 2 = 0.25 [0]
-// 8 / 2 = 4  [0]    |  0.25 * 2 = 0.5 [0]
-// 4 / 2 = 2  [0]    |  0.5 * 2 = 1    [1]  -> si le resultat est >= 1, on met 1 en binaire et on retire 1 au resultat avant de recommencer
-// 2 / 2 = 1  [0]    | 
-// 1 / 2 = 8  [1]    | 
-
-
-
+// 17 / 2 = *8  [1]  |  0.125 * 2 = 0.25 [0]
+// 8 / 2 = 4    [0]  |  0.25 * 2 = 0.5 [0]
+// 4 / 2 = 2    [0]  |  0.5 * 2 = 1    [1]  -> si le resultat est >= 1, on met 1 en binaire et on retire 1 au resultat avant de recommencer
+// 2 / 2 = 1    [0]  | 
+// 1 / 2 = *1   [1]  | 
 
 // on utilise du complement a deux pour les negatifs -> reverse tout les bits puis ajouter 1
 // ex : [-2] -> 2 = 0010 -> 1101 -> 1110 = -2
@@ -50,11 +47,13 @@
 
 int main( void ) {
 Fixed a;
+a.setRawBits(10);
 Fixed b( a );
 Fixed c;
+std::cout << "c = " << c.getRawBits() << std::endl;
 c = b;
-std::cout << a.getRawBits() << std::endl;
-std::cout << b.getRawBits() << std::endl;
-std::cout << c.getRawBits() << std::endl;
+std::cout << "a = " << a.getRawBits() << std::endl;
+std::cout << "b = " << b.getRawBits() << std::endl;
+std::cout << "c = " << c.getRawBits() << std::endl;
 return 0;
 }
