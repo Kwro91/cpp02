@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/08/29 16:02:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:20:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 #include <cmath>
 
 Fixed::Fixed() : value(0){
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << GREEN << "Default constructor called" << WHITE << std::endl;
 }
 
 Fixed::Fixed(const int x) : value(x << bits) {
-	std::cout << "Int constructor called" << std::endl;
+	std::cout << GREEN << "Int constructor called" << WHITE << std::endl;
 }
 
-Fixed::Fixed(const float x) : value(std::roundf(x * (1 << bits))) {
-	std::cout << "Float constructor called" << std::endl;
+Fixed::Fixed(const float x) : value(roundf(x * (1 << bits))) {
+	std::cout << GREEN << "Float constructor called" << WHITE << std::endl;
 }
 
 Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << RED << "Destructor called" << WHITE << std::endl;
 }
 
 Fixed::Fixed(const Fixed &x) {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << GREEN << "Copy constructor called" << WHITE << std::endl;
 
 	*this = x;
 }
@@ -54,7 +54,7 @@ void Fixed::setRawBits(int const raw) {
 	this->value = raw;
 }
 
-//  dans toInt on decale la valeur de value sur 8bits. (si value = 16 -> 0001 0000 ; value devient 0000 0001 soit 1)
+//  dans toInt on decale la valeur de value sur 8bits sur la droite. (si value = 16 -> 0001 0000 ; value devient 0000 0001 soit 1)
 //  on fait ca puisque on utilise les bits de droite pour les virgules pour les float mais pas les int
 
 int		Fixed::toInt() const {
