@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/09/06 17:23:46 by besalort         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:35:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed(const int x) : value(x << bits) {
 	// std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float x) : value(std::roundf(x * (1 << bits))) {
+Fixed::Fixed(const float x) : value(roundf(x * (1 << bits))) {
 	// std::cout << "Float constructor called" << std::endl;
 }
 
@@ -124,7 +124,7 @@ Fixed Fixed::operator*(const Fixed &nb) {
 Fixed Fixed::operator/(const Fixed &nb) {
 	if (this->value == 0 || nb.toFloat() == 0)
 	{
-		std::cout << "You can't divide by 0" << std::endl;
+		// std::cout << "You can't divide by 0" << std::endl;
 		return Fixed(this->toFloat());
 	}
 	return Fixed(this->toFloat() / nb.toFloat());

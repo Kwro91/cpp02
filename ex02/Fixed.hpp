@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:11:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/09/05 15:05:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:01:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
+
+#define WHITE "\033[0m"
+#define RED "\033[1;31m"
+#define BLUE "\033[1;34m"
+#define GREEN "\033[1;32m"
 
 class Fixed
 {
